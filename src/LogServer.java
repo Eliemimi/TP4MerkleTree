@@ -12,12 +12,9 @@ import javax.swing.plaf.basic.BasicTreeUI.TreeToggleAction;
 //Log server class use a Merkle tree to implement an event log 
 public class LogServer {
 
-	public LogServer() {
-
-	}
 
 	// reads a full log from a text file to construct a tree
-	public LogServer(String [] args )  throws NoSuchAlgorithmException {
+	public LogServer()  throws NoSuchAlgorithmException {
 		File textFile = new File("DS1-trace.txt");
 		buildMerkleTree(textFile);
 	}
@@ -25,12 +22,16 @@ public class LogServer {
 	// Fonctions qui permettent de creer l'arbre
 	private static void buildMerkleTree(File file) throws NoSuchAlgorithmException {
 		HashMap<MerkleTree,Node> treeToNode=new HashMap<>();
+		
+		//Lecture du fichier 
 		FileReader fileReader = null;
 		try {
 			fileReader = new FileReader(file);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		
+		
 		BufferedReader bufferedReader = new BufferedReader(fileReader);
 		String line;
 		List<MerkleTree> listOfTree = new ArrayList<>();
