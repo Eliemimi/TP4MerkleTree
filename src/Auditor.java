@@ -12,11 +12,7 @@ public class Auditor {
 		
 	}
 	
-	/*verifies that an event exists in the current log by calling genPath to obtain an audit path and 
-	 * verifying the hashes on the audit path: the path should begin with a hash of the event and end 
-	 * with the root hash, and all hashes on the path should be correctly computed. Note that this method 
-	 * does not use any knowledge of the full Merkle
-	 */
+	/*verifies that an event exists in the current log */
 	public void isMember(){
 		
 	}

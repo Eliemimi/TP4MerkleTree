@@ -22,16 +22,12 @@ public class LogServer {
 	// Fonctions qui permettent de creer l'arbre
 	private static void buildMerkleTree(File file) throws NoSuchAlgorithmException {
 		HashMap<MerkleTree,Node> treeToNode=new HashMap<>();
-		
-		//Lecture du fichier 
 		FileReader fileReader = null;
 		try {
 			fileReader = new FileReader(file);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		
-		
 		BufferedReader bufferedReader = new BufferedReader(fileReader);
 		String line;
 		List<MerkleTree> listOfTree = new ArrayList<>();
@@ -52,13 +48,11 @@ public class LogServer {
 				listOfTree.add(tree);
 				index++;
 			}
-			System.out.println(listOfTree);
 			while(listOfTree.size()!=1){
 				if(listOfTree.size()%2==0 && listOfTree.size()!=6){
 					for(int i=0; i<listOfTree.size();i++){
 						buildSubTrees(treeToNode, listOfTree, i);
 					}
-					System.out.println(listOfTree);
 				}else if (listOfTree.size()==6){
 					for(int i=0; i<listOfTree.size()-2;i++){
 						buildSubTrees(treeToNode, listOfTree, i);
@@ -70,8 +64,8 @@ public class LogServer {
 					}
 				}
 			}
-
-
+			
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -82,8 +76,7 @@ public class LogServer {
 		}
 	}
 
-	private static void buildSubTrees(HashMap<MerkleTree, Node> treeToNode,
-			List<MerkleTree> listOfTree, int i) {
+	private static void buildSubTrees(HashMap<MerkleTree, Node> treeToNode, List<MerkleTree> listOfTree, int i) {
 		MerkleTree tree=listOfTree.get(i);
 		if(treeToNode.get(tree)!= null){
 			// tree correspond au left tree du node

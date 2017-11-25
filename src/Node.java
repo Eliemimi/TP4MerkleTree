@@ -3,15 +3,7 @@ public class Node {
 		private MerkleTree leftMerkleTree;
 		private MerkleTree righMerkleTree;
 		private byte[] hashOfBothTrees;
-
-		public byte[] getHashOfBothTrees() {
-			return hashOfBothTrees;
-		}
-
-		public void setHashOfBothTrees(byte[] hashOfBothTrees) {
-			this.hashOfBothTrees = hashOfBothTrees;
-		}
-		
+	
 		public Node(){
 			
 		}
@@ -24,11 +16,8 @@ public class Node {
 			hashOfBothTrees = createHashFromLeftAndRightTrees(hashLeftMerkleTree, hashRightMerkleTree, (byte) 0x01);
 		}
 
-		private byte[] createHashFromLeftAndRightTrees(
-				byte[] hashLeftMerkleTree, byte[] hashRightMerkleTree,
-				byte prefix) {
-			byte[] concatenatedHash = concatenateTwoHashes(hashLeftMerkleTree,
-					hashRightMerkleTree);
+		private byte[] createHashFromLeftAndRightTrees(byte[] hashLeftMerkleTree, byte[] hashRightMerkleTree, byte prefix) {
+			byte[] concatenatedHash = concatenateTwoHashes(hashLeftMerkleTree, hashRightMerkleTree);
 			return Util.prependAndHash(prefix, concatenatedHash);
 		}
 
@@ -37,6 +26,14 @@ public class Node {
 			System.arraycopy(hash1, 0, finalHash, 0, hash1.length);
 			System.arraycopy(hash2, 0, finalHash, hash1.length, hash2.length);
 			return finalHash;
+		}
+		
+		public byte[] getHashOfBothTrees() {
+			return hashOfBothTrees;
+		}
+
+		public void setHashOfBothTrees(byte[] hashOfBothTrees) {
+			this.hashOfBothTrees = hashOfBothTrees;
 		}
 
 		public MerkleTree getLeftMerkleTree() {
